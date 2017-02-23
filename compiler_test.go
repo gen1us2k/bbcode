@@ -64,7 +64,7 @@ var basicTests = map[string]string{
 	"[b]test\nnewline[/b]":   `<b>test<br>newline</b>`,
 
 	"[code][b]some[/b]\n[i]stuff[/i]\n[/quote][/code][b]more[/b]":         "<pre>[b]some[/b]\n[i]stuff[/i]\n[/quote]</pre><b>more</b>",
-	"[quote name=Someguy]hello[/quote]":                                   `<blockquote><cite>Someguy said:</cite>hello</blockquote>`,
+	"[quote name=Someguy]hello[/quote]":                                   `<blockquote>hello</blockquote>`,
 	"[center]hello[/center]":                                              `<div style="text-align: center;">hello</div>`,
 	"[size=6]hello[/size]":                                                `<span class="size6">hello</span>`,
 	"[center][b][color=#00BFFF][size=6]hello[/size][/color][/b][/center]": `<div style="text-align: center;"><b><span style="color: #00BFFF;"><span class="size6">hello</span></span></b></div>`,
