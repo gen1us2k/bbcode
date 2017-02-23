@@ -220,21 +220,7 @@ func init() {
 	DefaultTagCompilers["quote"] = func(node *BBCodeNode) (*HTMLTag, bool) {
 		out := NewHTMLTag("")
 		out.Name = "blockquote"
-		who := ""
-		in := node.GetOpeningTag()
-		if name, ok := in.Args["name"]; ok && name != "" {
-			who = name
-		} else {
-			who = in.Value
-		}
-		cite := NewHTMLTag("")
-		cite.Name = "cite"
-		if who != "" {
-			cite.AppendChild(NewHTMLTag(who + " said:"))
-		} else {
-			cite.AppendChild(NewHTMLTag("Quote"))
-		}
-		return out.AppendChild(cite), true
+		return out, true
 	}
 
 	DefaultTagCompilers["code"] = func(node *BBCodeNode) (*HTMLTag, bool) {
