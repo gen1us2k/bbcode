@@ -90,6 +90,14 @@ func (c Compiler) CompileTree(node *BBCodeNode) *HTMLTag {
 				for _, child := range node.Children {
 					out.AppendChild(c.CompileTree(child))
 				}
+				if out.Name == "blockquote" {
+					s := out
+					s.Name = "div"
+					out = NewHTMLTag("")
+					out.Name = "blockquote"
+					out.AppendChild(s)
+				}
+
 			}
 		}
 	}
@@ -220,6 +228,7 @@ func init() {
 	DefaultTagCompilers["quote"] = func(node *BBCodeNode) (*HTMLTag, bool) {
 		out := NewHTMLTag("")
 		out.Name = "blockquote"
+
 		return out, true
 	}
 

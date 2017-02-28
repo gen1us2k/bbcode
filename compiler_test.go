@@ -64,7 +64,8 @@ var basicTests = map[string]string{
 	"[b]test\nnewline[/b]":   `<b>test<br>newline</b>`,
 
 	"[code][b]some[/b]\n[i]stuff[/i]\n[/quote][/code][b]more[/b]":         "<pre>[b]some[/b]\n[i]stuff[/i]\n[/quote]</pre><b>more</b>",
-	"[quote name=Someguy]hello[/quote]":                                   `<blockquote>hello</blockquote>`,
+	"[quote name=Someguy]hello[/quote]":                                   `<blockquote><div>hello</div></blockquote>`,
+	"[quote name=Someguy][b]hello[/b][/quote]":                                   `<blockquote><div><b>hello</b></div></blockquote>`,
 	"[center]hello[/center]":                                              `<div style="text-align: center;">hello</div>`,
 	"[size=6]hello[/size]":                                                `<span class="size6">hello</span>`,
 	"[center][b][color=#00BFFF][size=6]hello[/size][/color][/b][/center]": `<div style="text-align: center;"><b><span style="color: #00BFFF;"><span class="size6">hello</span></span></b></div>`,
@@ -78,7 +79,7 @@ var basicMultiArgTests = map[string][]string{
 }
 
 func TestCompile(t *testing.T) {
-	c := NewCompiler(false, false)
+	c := NewCompiler(true, true)
 	for in, out := range basicTests {
 		result := c.Compile(in)
 		if result != out {
