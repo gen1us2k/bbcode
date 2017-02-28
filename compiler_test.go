@@ -67,7 +67,7 @@ var basicTests = map[string]string{
 	"[quote]hello[/quote]":                                                `<blockquote><div>hello</div></blockquote>`,
 	"[quote][b]hello[/b][/quote]":                                         `<blockquote><div><b>hello</b></div></blockquote>`,
 	"[quote name='Someguy'][b]hello[/b][/quote]":                          `<blockquote data-author="Someguy"><div><b>hello</b></div></blockquote>`,
-	`[quote name="Someguy"][b]hello[/b][/quote]`:                          `<blockquote data-author="Someguy"><div><b>hello</b></div></blockquote>`,
+	`[quote name="ХоЛмС"][b]hello[/b][/quote]`:                            `<blockquote data-author="ХоЛмС"><div><b>hello</b></div></blockquote>`,
 	"[center]hello[/center]":                                              `<div style="text-align: center;">hello</div>`,
 	"[size=6]hello[/size]":                                                `<span class="size6">hello</span>`,
 	"[center][b][color=#00BFFF][size=6]hello[/size][/color][/b][/center]": `<div style="text-align: center;"><b><span style="color: #00BFFF;"><span class="size6">hello</span></span></b></div>`,

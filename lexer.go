@@ -57,8 +57,6 @@ func (l *lexer) runStateMachine() {
 
 func (l *lexer) emit(id string, value interface{}) {
 	if l.pos > 0 {
-		// fmt.Println(l.input)
-		// fmt.Printf("Emit %s: %+v\n", id, value)
 		l.tokens <- Token{id, value}
 		l.input = l.input[l.pos:]
 		l.pos = 0
@@ -202,6 +200,7 @@ func lexQuotedValue(l *lexer) stateFn {
 	quoteChar := l.input[l.pos]
 	l.pos++
 	l.start = l.pos
+	l.end = l.pos
 	var buf bytes.Buffer
 	escape := false
 	for l.pos < len(l.input) {
@@ -214,16 +213,19 @@ func lexQuotedValue(l *lexer) stateFn {
 			escape = false
 		} else {
 			switch l.input[l.pos] {
-			case '\\':
-				escape = true
 			case '\n':
 				l.pos = l.start
 				return lexText
+			case '\\':
+				escape = true
 			case quoteChar:
 				l.pos++
-				l.tagTmpValue = buf.String()
+				l.tagTmpValue = l.input[l.start:l.end]
+				// FIXME
+				// fmt.Println(l.tagTmpValue)
 				return lexTagArgs
 			default:
+				l.end++
 				buf.WriteRune(rune(l.input[l.pos]))
 			}
 		}

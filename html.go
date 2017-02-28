@@ -5,6 +5,7 @@
 package bbcode
 
 import (
+	"fmt"
 	"html"
 	"net/url"
 	"strings"
@@ -42,15 +43,14 @@ func (t *HTMLTag) String() string {
 			childrenString += child.String()
 		}
 		if len(t.Name) > 0 {
-			return value + "<" + t.Name + attrString + ">" + childrenString + "</" + t.Name + ">"
+			value = fmt.Sprintf("<%s%s>%s</%s>", t.Name, attrString, childrenString, t.Name)
 		} else {
-			return value + childrenString
+			value = fmt.Sprintf("%s%s", value, childrenString)
 		}
 	} else if len(t.Name) > 0 {
-		return value + "<" + t.Name + attrString + ">"
-	} else {
-		return value
+		value = fmt.Sprintf("<%s%s>", t.Name, attrString)
 	}
+	return value
 }
 
 func (t *HTMLTag) AppendChild(child *HTMLTag) *HTMLTag {

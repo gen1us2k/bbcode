@@ -42,6 +42,8 @@ var prelexTests = map[string][]string{
 	`[img = "f\oo\]\'fo\\o"]bar[/img]`:                                           []string{`<img=foo]'fo\o>`, `bar`, `</img>`},
 	`[img = "foo\]'fo\n\"o"]bar[/img]`:                                           []string{"<img=foo]'fo\n\"o>", `bar`, `</img>`},
 	`[quote name='Someguy']hello[/quote]`:                                        []string{`<quote name=Someguy>`, `hello`, `</quote>`},
+	`[quote name='человек']hello[/quote]`:                                        []string{`<quote name=человек>`, `hello`, `</quote>`},
+	`[quote name=человек]hello[/quote]`:                                          []string{`<quote name=человек>`, `hello`, `</quote>`},
 	`[center][b][color="#00BFFF"][size='6]hello[/size][/color][/b][/center]`:     []string{`<center>`, `<b>`, `<color=#00BFFF>`, `[size='6]hello`, `</size>`, `</color>`, `</b>`, `</center>`},
 	"[center][b][color=\"#00BFFF\"][size='6]hello[/size]\n[/color][/b][/center]": []string{`<center>`, `<b>`, `<color=#00BFFF>`, `[size='6]hello`, `</size>`, "\n", `</color>`, `</b>`, `</center>`},
 }
