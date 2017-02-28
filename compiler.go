@@ -95,6 +95,8 @@ func (c Compiler) CompileTree(node *BBCodeNode) *HTMLTag {
 					s.Name = "div"
 					out = NewHTMLTag("")
 					out.Name = "blockquote"
+					out.Attrs = s.Attrs
+					s.Attrs = map[string]string{}
 					out.AppendChild(s)
 				}
 
@@ -228,6 +230,17 @@ func init() {
 	DefaultTagCompilers["quote"] = func(node *BBCodeNode) (*HTMLTag, bool) {
 		out := NewHTMLTag("")
 		out.Name = "blockquote"
+		who := ""
+		in := node.GetOpeningTag()
+
+		if name, ok := in.Args["name"]; ok && name != "" {
+			who = name
+		} else {
+			who = in.Value
+		}
+		if who != "" {
+			out.Attrs["data-author"] = who
+		}
 
 		return out, true
 	}
