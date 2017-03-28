@@ -72,8 +72,9 @@ var basicTests = map[string]string{
 	"[size=6]hello[/size]":                                                `<span class="size6">hello</span>`,
 	"[center][b][color=#00BFFF][size=6]hello[/size][/color][/b][/center]": `<div style="text-align: center;"><b><span style="color: #00BFFF;"><span class="size6">hello</span></span></b></div>`,
 
-	`[not a tag][/not ]`: `[not a tag][/not ]`,
-	`[not a tag]`:        `[not a tag]`,
+	`[not a tag][/not ]`:                      `[not a tag][/not ]`,
+	`[not a tag]`:                             `[not a tag]`,
+	`[font="Arial Black"]0700 968 758[/font]`: `<div>0700 968 758</div>`,
 }
 var basicMultiArgTests = map[string][]string{
 	`[img=http://example.com]alt text[/img]`: []string{`<img`, ` src="http://example.com"`, ` alt="alt text"`, ` title="alt text"`, `>`},

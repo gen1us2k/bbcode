@@ -197,6 +197,11 @@ func init() {
 		out.Attrs["style"] = "text-align: center;"
 		return out, true
 	}
+	DefaultTagCompilers["font"] = func(node *BBCodeNode) (*HTMLTag, bool) {
+		out := NewHTMLTag("")
+		out.Name = "div"
+		return out, true
+	}
 
 	DefaultTagCompilers["color"] = func(node *BBCodeNode) (*HTMLTag, bool) {
 		out := NewHTMLTag("")
