@@ -173,6 +173,20 @@ func init() {
 		}
 		return out, true
 	}
+	DefaultTagCompilers["media"] = func(node *BBCodeNode) (*HTMLTag, bool) {
+		out := NewHTMLTag("")
+		out.Name = "a"
+		value := node.GetOpeningTag().Value
+		if value == "" {
+			text := CompileText(node)
+			if len(text) > 0 {
+				out.Attrs["href"] = ValidURL(text)
+			}
+		} else {
+			out.Attrs["href"] = ValidURL(value)
+		}
+		return out, true
+	}
 
 	DefaultTagCompilers["img"] = func(node *BBCodeNode) (*HTMLTag, bool) {
 		out := NewHTMLTag("")

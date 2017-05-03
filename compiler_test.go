@@ -43,9 +43,10 @@ func BenchmarkFullBasic(b *testing.B) {
 
 var basicTests = map[string]string{
 	``: ``,
-	`[url]http://example.com[/url]`: `<a href="http://example.com">http://example.com</a>`,
-	`[img]http://example.com[/img]`: `<img src="http://example.com">`,
-	`[img][/img]`:                   `<img src="">`,
+	`[url]http://example.com[/url]`:               `<a href="http://example.com">http://example.com</a>`,
+	`[media]https://youtu.be/CX8MXqV8Zks[/media]`: `<a href="https://youtu.be/CX8MXqV8Zks">https://youtu.be/CX8MXqV8Zks</a>`,
+	`[img]http://example.com[/img]`:               `<img src="http://example.com">`,
+	`[img][/img]`:                                 `<img src="">`,
 
 	`[url=http://example.com]example[/url]`: `<a href="http://example.com">example</a>`,
 	`[img=http://example.com][/img]`:        `<img src="http://example.com">`,
